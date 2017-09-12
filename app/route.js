@@ -4,8 +4,6 @@ const router  = new Route();
 const HomeCtl = require('./controller/home');
 const HomeController = new HomeCtl();
 
-router.get('/', async (ctx, next) => {
-  await HomeController.index(ctx);
-});
+router.get('/', HomeController.index);
 
 module.exports = router

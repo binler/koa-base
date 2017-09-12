@@ -3,12 +3,11 @@
  * Controller
  */
 class HomeController {
-  constructor() {
+  constructor() {}
 
-  }
-
+  // index
   async index(ctx) {
-    ctx.body = "dwq";
+    await ctx.render( 'index', {title: 'Koajs', content: 'Hello world'} );
   }
 
 }
