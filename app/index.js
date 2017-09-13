@@ -7,6 +7,7 @@ const cors = require('kcors');
 const path = require('path');
 const config = require(path.join(__dirname, 'config/app'));
 const serve = require('koa-static');
+const favicon = require('koa-favicon');
 const app = new Koa();
 
 const router = require('./route');
@@ -33,6 +34,9 @@ app.use(cors({ origin: '*' }));
 
 //For assets (Js, Css, Font, image)
 app.use(serve(path.join('.', 'public', config.assets)));
+
+// Favicon
+app.use(favicon('./public/favicon.ico'));
 
 // Use config in view
 app.context.config = config;
