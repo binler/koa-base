@@ -5,6 +5,8 @@ const bodyParser = require('koa-bodyparser');
 const render = require('koa-ejs');
 const cors = require('kcors');
 const path = require('path');
+const config = require(path.join(__dirname, 'config/app'));
+const serve = require('koa-static');
 const app = new Koa();
 
 const router = require('./route');
@@ -21,14 +23,19 @@ app.use(async function responseTime(ctx, next) {
 
 render(app, {
   root: path.join(__dirname, 'view'),
-  layout: 'template',
-  viewExt: 'html',
-  cache: false,
-  debug: false
+  layout: config.ejs_layout,
+  viewExt: config.viewExt,
+  cache: config.ejs_cache,
+  debug: config.ejs_debug
 });
-
 //For cors with options
 app.use(cors({ origin: '*' }));
+
+//For assets (Js, Css, Font, image)
+app.use(serve(path.join('.', 'public', config.assets)));
+
+// Use config in view
+app.context.config = config;
 
 app.use(router.routes());
 app.use(router.allowedMethods());
