@@ -1,6 +1,7 @@
 /**
  * Config Application
  */
+require('dotenv').config();
 module.exports = {
 
   // Name app
@@ -19,6 +20,14 @@ module.exports = {
   viewExt: 'html',
 
   // Directory assets folder
-  assets: 'assets'
+  assets: 'assets',
+
+  database : {
+    host: process.env.DB_HOST,
+    database: process.env.DB_DATABASE,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    dialect: "mysql"
+  }
 
 }
