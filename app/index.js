@@ -8,8 +8,14 @@ const path = require('path');
 const config = require(path.join(__dirname, 'config/app'));
 const serve = require('koa-static');
 const favicon = require('koa-favicon');
+const fs = require('fs');
 const app = new Koa();
 
+// Autoload controler.
+fs.readdirSync(path.join(__dirname, 'controller')).forEach(function(file) {
+  var fileInfo = path.parse(file);
+  require('./controller/' + fileInfo.name);
+});
 const router = require('./route');
 
 app.use(bodyParser({ enableTypes: ['json'] }));

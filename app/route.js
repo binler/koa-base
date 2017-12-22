@@ -1,8 +1,6 @@
 const Route = require('koa-router');
 const router  = new Route();
-
-const HomeCtl = require('./controller/home');
-const HomeController = new HomeCtl();
+const HomeController = new HomeController();
 
 router.get('/', HomeController.index);
 

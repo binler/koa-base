@@ -10,6 +10,10 @@ class HomeController {
     await ctx.render( 'home/index', {title: 'Koajs', content: 'Hello world'} );
   }
 
+  async test(ctx) {
+    console.log('test');
+  }
+
 }
 
 module.exports = HomeController
